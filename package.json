@@ -1,0 +1,35 @@
+{
+  "name": "wikiplante-api",
+  "version": "1.0.0",
+  "description": "API fiche végétal ",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "createdb": "node dataBase/createDataBase.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The8blank/WikiPlante-API.git"
+  },
+  "author": "Samuel Chojnacki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/The8blank/WikiPlante-API/issues"
+  },
+  "homepage": "https://github.com/The8blank/WikiPlante-API#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mariadb": "^3.0.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.19",
+    "sequelize": "^6.21.4",
+    "uuid": "^8.3.2"
+  }
+}
