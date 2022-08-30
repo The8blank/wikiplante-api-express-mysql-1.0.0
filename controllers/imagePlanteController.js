@@ -24,7 +24,7 @@ exports.uploadPlante = async (req, res, next) => {
       })
       .then((plante, err) => {                                                         
         res.status(201).json({                                                       // Renvoit un status 201 Created !         
-          message: "plante created",                                                    // Avec le message plante created                                                                     // Et l'objet plante
+          message: "image upload success",                                                    // Avec le message plante created                                                                     // Et l'objet plante
         });
       })
 
@@ -47,7 +47,7 @@ exports.deleteImagePlante = async (req, res) => {                               
           .json({ message: "Invalid request ! You are not allowed to delete" });
       else {
         await imagePlante.destroy();                                                     // Supprime la plante  
-        res.status(200).json({ message: "plante deleted" });                          // Res un status 200 OK ! Avec la message plante deleted
+        res.status(200).json({ message: "image deleted" });                          // Res un status 200 OK ! Avec la message plante deleted
       }
     } catch (err) {
       return res.status(500).json({ error: err });                                // Renvoit un status 500 Internal Server Error ! Avec l'erreur'

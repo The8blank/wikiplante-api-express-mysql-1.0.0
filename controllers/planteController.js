@@ -1,8 +1,8 @@
-const {User, Plante} = require('../dataBase/database')
+const {User, Plante, ImagePlante} = require('../dataBase/database')
 
 exports.getUserPlante = async (req, res) => {                                         // Envoit toutes les plantes d'un utilisateur 
   try {
-    const user = await User.findByPk(req.params.id);                                        // Trouve l'utilisateur grace à l'id placé en paramètre de l'url
+    const user = await User.findByPk(req.params.id,{include: ImagePlante});                                        // Trouve l'utilisateur grace à l'id placé en paramètre de l'url
     const plante = await user.getPlantes();                                                 // Récupère les plantes de l'utilisateur grâce à sa cléf étrangère
 
     if (!plante) {                                                                          // Si la constante plante renvoit false
@@ -17,7 +17,7 @@ exports.getUserPlante = async (req, res) => {                                   
 
 exports.getOnePlante = async (req, res) => {                                          // Envoit une plante 
   try {
-    const plante = await Plante.findByPk(req.params.id);                                    // Trouve la plante grâce à son id placé en paramètre de l'url
+    const plante = await Plante.findByPk(req.params.id,{include: ImagePlante});                                    // Trouve la plante grâce à son id placé en paramètre de l'url
 
     if (!plante) {                                                                          // Si la constant plante renvoit false        
       return res.status(404).json({ message: "plante not found" });                           // Envoit plantes not found
@@ -30,7 +30,7 @@ exports.getOnePlante = async (req, res) => {                                    
 
 exports.getAllPlante = async (req, res) => {                                          // Tous les plante des utilisateurs
   try {
-    const plante = await Plante.findAll();                                                // Trouves tous les plante dans la base de donnée
+    const plante = await Plante.findAll({include: ImagePlante});                                                // Trouves tous les plante dans la base de donnée
 
     if (!plante) {                                                                        // si la constante plante renvoit false
       return res.status(404).json({ error: "plante not found" });                            // Res un status 404 Not fount ! Avec plante not found

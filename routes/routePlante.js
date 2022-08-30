@@ -23,7 +23,7 @@ router.put("/:id"     /* id du post à modifier */, updateOnePlante);
 router.delete("/:id"  /* id du post à supprimer */ , deleteOnePlante);
 
 router.get("/", getAllPlante);
-router.get("/user/:id" /* id de l'user */  , getUserPlante);
+router.get("/user:id" /* id de l'user */  , getUserPlante);
 router.get("/:id"      /* id de la plante */    , getOnePlante);
 
 // UPLOAD 
