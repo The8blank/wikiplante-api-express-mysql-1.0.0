@@ -24,19 +24,20 @@ module.exports.checkUser = async (req, res, next) => {
 };
 
 module.exports.requireAuth = async (req, res, next) => {
-  const token = req.cookies.jwt
-
+  const token = req.cookies.jwt;
+  
   if (token) {
-    jwt.verify(token, 'SECRET', async (err, decodedToken) => {
-      if (err) {
+
+    jwt.verify(token, process.env.SECRET_TOKEN, async (err, decodedToken) => {
+      if(err) {
         console.log(err);
-        res.send(200).json('no token');
+        res.status(200).json('no token')
       } else {
-        res.status(200).json({message: 'You have a valid token'})
+        console.log(decodedToken);
         next()
       }
     })
   } else {
-    console.log('no token');
+    console.log('No token');
   }
 };

@@ -1,4 +1,5 @@
 const express = require("express");
+const { routes } = require("../app.js");
 const router = express.Router();
 const {
   signUp,
@@ -9,11 +10,15 @@ const {
   updateUser,
   deleteUser,
 } = require("../controllers/userController.js");
+const { requireAuth } = require("../middlewares/auth.js");
 
 // auth
 router.post("/signup", signUp);
 router.post("/login", signIn);
 router.get("/logout", logOut);
+router.get("/jwtid", requireAuth, (req, res) => {
+  res.status(200).send(res.locals.user.id)
+})
 
 // user display "block"
 router.get("/", getAllUsers);
