@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../dataBase/dataBase");
-require('dotenv').config({path:'./config/.env'})
+require("dotenv").config({ path: "./config/.env" });
 
 exports.signUp = (req, res, next) => {
   try {
@@ -13,7 +13,20 @@ exports.signUp = (req, res, next) => {
 
     User.create(user)
       .then((user) => {
-        console.log("user crée dans la base de donné");
+        token = jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN, {
+          expiresIn: "24h",
+        });
+        res.cookie("jwt", token, {
+          httpOnly: true,
+          maxAge: 1000 * 60 * 60 * 24,
+        });
+        token = jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN, {
+          expiresIn: "24h",
+        });
+        res.cookie("jwt", token, {
+          httpOnly: true,
+          maxAge: 1000 * 60 * 60 * 24,
+        });
         res.status(201).json({ user });
       })
       .catch((err) => {
@@ -28,7 +41,7 @@ exports.signIn = async (req, res, next) => {
   const user = await User.findOne({ where: { email: body.email } });
 
   if (user === null) {
-    return res.status(404).json({ errors: ("Email incorrect / inconnue") });
+    return res.status(404).json({ errors: "Email incorrect / inconnue" });
   }
 
   bcrypt.compare(body.password, user.password, function (err, result) {
