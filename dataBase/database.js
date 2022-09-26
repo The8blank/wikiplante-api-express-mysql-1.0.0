@@ -6,7 +6,7 @@ const imagePlanteModel = require("./Models/imagePlanteModel"); // Import du mode
 const sequelize = new Sequelize("Wikiplante", "root", "root", {
   // Connexion à la base de donnée
   host: "localhost",
-  dialect: "mariadb",
+  dialect: "mysql",
 });
 
 const User = sequelize.define("User", UserModel);                      // Définit le model User

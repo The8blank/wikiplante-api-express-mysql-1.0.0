@@ -9,16 +9,14 @@ const PlanteModel = {
     type: Sequelize.INTEGER
   },
 
-  userId: {
-      type: Sequelize.UUID,
-      allowNull: false,
-        references: {
-          model: "Users",
-          key: "id"
-        },
-        onUpdate: "cascade",
-        onDelete: "cascade"
-    },
+  nom_commun : {
+    allowNull: false,
+    type: Sequelize.STRING,
+    validate : {
+        min: 1,
+        max: 255
+      }
+  },
     
   genre : {
     allowNull: false,
@@ -38,7 +36,7 @@ const PlanteModel = {
       }
   },
 
-  nom_commun : {
+  sous_espece_cultivar : {
     allowNull: false,
     type: Sequelize.STRING,
     validate : {
@@ -57,6 +55,13 @@ const PlanteModel = {
   },
 
   ordre : {
+    type: Sequelize.STRING,
+    validate : {
+        min: 1,
+        max: 255
+      }
+  },
+  categorie : {
     type: Sequelize.STRING,
     validate : {
         min: 1,
@@ -144,6 +149,17 @@ const PlanteModel = {
         max: 255
       }
   },
+
+  userId: {
+    type: Sequelize.UUID,
+    allowNull: false,
+      references: {
+        model: "Users",
+        key: "id"
+      },
+      onUpdate: "cascade",
+      onDelete: "cascade"
+  }
  
 };
 
