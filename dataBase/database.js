@@ -3,7 +3,7 @@ const UserModel = require("./Models/userModel"); // Import du model User
 const PlanteModel = require("./Models/planteModel"); // Import du model Plante
 const imagePlanteModel = require("./Models/imagePlanteModel"); // Import du model Image
 
-const sequelize = new Sequelize("Wikiplante", "root", "root", {
+const sequelize = new Sequelize("Wikiplante", "root", "", {
   // Connexion à la base de donnée
   host: "localhost",
   dialect: "mysql",
