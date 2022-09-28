@@ -37,7 +37,6 @@ const PlanteModel = {
   },
 
   sous_espece_cultivar : {
-    allowNull: false,
     type: Sequelize.STRING,
     validate : {
         min: 1,

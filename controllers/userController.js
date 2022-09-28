@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User } = require("../dataBase/dataBase");
+const { User, Plante } = require("../dataBase/dataBase");
 require("dotenv").config({ path: "./config/.env" });
 
 exports.signUp = (req, res, next) => {
@@ -68,7 +68,7 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.getOneUser = async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id, {include : Plante});
+    const user = await User.findByPk(req.params.id,  {include : Plante } );
 
     if (!user) return res.status(404).json({ message: "User id unknown" });
 
