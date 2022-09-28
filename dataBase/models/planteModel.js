@@ -159,6 +159,12 @@ const PlanteModel = {
       },
       onUpdate: "cascade",
       onDelete: "cascade"
+  },
+  
+  isCompleted : {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
   }
  
 };

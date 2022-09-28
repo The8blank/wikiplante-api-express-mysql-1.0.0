@@ -68,7 +68,7 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.getOneUser = async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.params.id, {include : Plante});
 
     if (!user) return res.status(404).json({ message: "User id unknown" });
 

@@ -24,7 +24,8 @@ exports.uploadPlante = async (req, res, next) => {
       })
       .then((plante, err) => {                                                         
         res.status(201).json({                                                       // Renvoit un status 201 Created !         
-          message: "image upload success",                                                    // Avec le message plante created                                                                     // Et l'objet plante
+          message: "image upload success", 
+          plante                                                   // Avec le message plante created                                                                     // Et l'objet plante
         });
       })
 
