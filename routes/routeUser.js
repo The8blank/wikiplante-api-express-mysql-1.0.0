@@ -17,7 +17,7 @@ router.post("/signup", signUp);
 router.post("/login", signIn);
 router.get("/logout", logOut);
 router.get("/jwtid", requireAuth, (req, res) => {
-  res.status(200).send(res.locals.user.id)
+  res.status(200).json({id:res.locals.user.id, result : true})
 })
 
 // user display "block"

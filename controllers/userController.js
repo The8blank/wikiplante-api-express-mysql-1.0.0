@@ -72,7 +72,17 @@ exports.getOneUser = async (req, res, next) => {
 
     if (!user) return res.status(404).json({ message: "User id unknown" });
 
-    res.status(200).json({ user });
+    const newRecord = {
+      id : user.id,
+      username : user.username,
+      email: user.email ,
+      isAdmin : user.isAdmin,
+      Plantes: user.Plantes,
+      createdAt : user.createdAt,
+      updatedAt : user.updatedAt,
+    }
+
+    res.status(200).json({ user : newRecord });
   } catch (err) {
     res.status(500).json({ error: err });
   }
