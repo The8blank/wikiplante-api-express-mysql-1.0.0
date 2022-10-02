@@ -33,6 +33,7 @@ module.exports.requireAuth = async (req, res, next) => {
         console.log(err);
         res.status(200).send({"result": false, "message":"no token"})
       } else {
+        res.decodedToken = decodedToken;
         next()
       }
     })
