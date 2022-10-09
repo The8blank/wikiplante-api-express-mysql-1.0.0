@@ -13,15 +13,14 @@ const routePlante = require('./routes/routePlante.js');     // Import des router
 
 
 sequelize.authenticate()                                                            // test de connexion à la db 
-.then(() => {
-    console.log("\x1b[1m","\x1b[34m","connexion établie à la base de donnée")       // Décoration de la console parce que c'est beau
+.then(() => {      
     sequelize.sync()                                                                // Synchonisation de toutes les tables définit par les modèles 
 })
 .catch((err) => console.log(err))
 
 
 const corsOptions = {
-    origin:'http://127.0.0.1:5173', 
+    origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }

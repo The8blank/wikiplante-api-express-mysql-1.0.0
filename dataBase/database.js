@@ -2,11 +2,12 @@ const { Sequelize } = require("sequelize");
 const UserModel = require("./Models/userModel"); // Import du model User
 const PlanteModel = require("./Models/planteModel"); // Import du model Plante
 const imagePlanteModel = require("./Models/imagePlanteModel"); // Import du model Image
+require('dotenv').config({path: './config/.env'})
 
-const sequelize = new Sequelize("Wikiplante", "root", "", {
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
   // Connexion à la base de donnée
-  host: "localhost",
-  dialect: "mysql",
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
 });
 
 const User = sequelize.define("User", UserModel);                      // Définit le model User

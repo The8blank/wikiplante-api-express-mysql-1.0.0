@@ -46,7 +46,7 @@ exports.signIn = async (req, res, next) => {
 
   bcrypt.compare(body.password, user.password, function (err, result) {
     if (!result) {
-      return res.status(401).json({ errors: "Invalid password" });
+      return res.status(401).json({ errors: "Mot de passe incorrect" });
     } else {
       token = jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN, {
         expiresIn: "24h",
@@ -70,7 +70,7 @@ exports.getOneUser = async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id,  {include : Plante } );
 
-    if (!user) return res.status(404).json({ message: "User id unknown" });
+    if (!user) return res.status(404).json({ message: "Utilisateur inconnu" });
 
     const newRecord = {
       id : user.id,
@@ -101,13 +101,13 @@ exports.updateUser = async (req, res, next) => {
       ...body,
     };
 
-    if (!user) return res.status(404).json({ message: "user not found" });
+    if (!user) return res.status(404).json({ message: "Utilisateur introuvable" });
     if (user.id != res.locals.user.id)
-      return res.status(400).json({ message: "Invalid request !" });
+      return res.status(400).json({ message: "Requête invalide !" });
 
     await user.update(newRecord);
 
-    res.status(201).json({ message: "User update", user });
+    res.status(201).json({ message: "Utilisateur modifié", user });
   } catch (err) {
     return res.status(500).json({ message: err });
   }
@@ -117,15 +117,15 @@ exports.deleteUser = async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
 
-    if (!user) return res.status(404).json({ message: "user not found" });
+    if (!user) return res.status(404).json({ message: "Utilisateur introuvable" });
 
     if (user.id != res.locals.user.id)
-      return res.status(400).json({ message: "Invalid request !" });
+      return res.status(400).json({ message: "Requête invalide !" });
 
     await user.destroy();
     console.log("deleted user");
-    res.status(200).json({ message: "user deleted" });
+    res.status(200).json({ message: "Utilisateur supprimé" });
   } catch (err) {
-    return res.status(500).json({ message: "error deleting user", err });
+    return res.status(500).json({ message: "Erreur lors de la suppression", err });
   }
 };
